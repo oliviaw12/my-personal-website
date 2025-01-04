@@ -37,30 +37,61 @@ export default function Navbar() {
   return (
     <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-neutral/90 text-white shadow-lg rounded-lg px-6 py-3 w-[90%] max-w-12xl">
       {/* Navbar Content */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center w-full">
         {/* Logo */}
         <div className="text-xl font-bold">
           <Link href="/">olivia wong</Link>
+          
         </div>
 
-        {/* Center Links */}
-        <div className="hidden lg:flex space-x-11">
-          <Link href="/" className="text-lg hover:text-primary font-semibold">
-            Home
-          </Link>
-          <Link href="/about-me" className="text-lg hover:text-primary font-semibold">
-            About Me
-          </Link>
-          <Link href="/projects" className="text-lg hover:text-primary font-semibold">
-            Projects
-          </Link>
-          <Link href="/contact-me" className="text-lg hover:text-primary font-semibold">
-            Contact Me
-          </Link>
+        {/* Center Links Container */}
+        <div className="flex-1 flex justify-center">
+          <div className="hidden lg:flex space-x-11">
+            <Link href="/" className="text-lg hover:text-primary font-semibold">
+              Home
+            </Link>
+            <Link href="/about-me" className="text-lg hover:text-primary font-semibold">
+              About Me
+            </Link>
+            <Link href="/projects" className="text-lg hover:text-primary font-semibold">
+              Projects
+            </Link>
+            <Link href="/contact-me" className="text-lg hover:text-primary font-semibold">
+              Contact Me
+            </Link>
+          </div>
         </div>
 
         {/* Theme Toggle */}
         <div className="flex items-center gap-2">
+        <a
+            href="https://github.com/oliviaw12"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-3xl hover:text-primary transition duration-100"
+          ></a>
+          <a
+            href="https://github.com/oliviaw12"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl hover:text-primary ml-5 transition duration-100"
+          >
+            <i className="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/olivia-wongg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-2xl hover:text-primary ml-5 transition duration-100"
+          >
+            <i className="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="mailto:o.wong@mail.utoronto.ca"
+            className="text-2xl hover:text-primary ml-5 mr-6 transition duration-100"
+          >
+            <i className="fas fa-envelope"></i>
+          </a>
           <label className="swap swap-rotate">
             {/* Hidden checkbox controls state */}
             <input

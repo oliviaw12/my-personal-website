@@ -1,44 +1,76 @@
-import Link from 'next/link';
-import projects from './/projects/projectsList';
-import Footer from '@/components/footer'; // Update the path based on your project structure
+import React from "react";
+import styles from '../css/projects.module.css';
+import Navbar from "@/components/navBar";
+import Footer from "@/components/footer"
 
-export default function Projects() {
+const projects = [
+    {
+        title: "Examly",
+        description:
+            "An interactive website that showcases my skills and projects in a visually appealing manner.",
+        tags: ["React", "Python", "AWS"],
+        image: "/images/examly.png",
+    },
+    {
+        title: "Tayste",
+        description:
+            "A cross-platform mobile app (iOS/Android) offering tailored dining discounts to students.",
+        tags: ["React Native", "Firebase", "Flask", "Python"],
+        image: "/images/tayste.png",
+    },
+    {
+        title: "Fraud Fighters",
+        description:
+            "An add-on to Scotiabank’s app that offers users personalized educational modules on fraud prevention, tailored to their transaction history and demographics",
+        tags: ["Figma", "Python", "NumPy"],
+        image: "/images/FraudFighters.png",
+    },
+    {
+        title: "Friendify",
+        description:
+            "A friend-matching app that matches users based on commonalities in their Spotify playlists.",
+        tags: ["Java", "Swing", "JSON"],
+        image: "/images/friendify.jpeg",
+    },
+    {
+        title: "Games Recommender",
+        description:
+            "A game recommending app that suggests Steam games based on community reviews and user preferences.",
+        tags: ["Python", "Tkinter"],
+        image: "/images/SteamGames.jpeg",
+    },
+];
+
+function Projects() {
     return (
-        <main className="projects-page">
-            <div className="header">
-                <p>
-                    I love unraveling complex problems, leveraging technology to bridge gaps, and crafting tech solutions that center around human needs.
-                    Whether it's supporting accessible education or improving patient care, I code for the potential technology has to aid and enrich our lives.
-                </p>
-            </div>
-            <div className="devGrid">
-                {projects.map((project) =>
-                    project.disabled ? (
-                        <div key={project.title} className="project-card disabled">
-                            <h2>{project.title}</h2>
-                            <p>{project.description}</p>
-                            <div className="tags">
-                                {project.tags ? project.tags.join(', ') : 'No tags available'}
+        <>
+            <Navbar />
+            <div className={styles.projectsSection}>
+                <h2 className={styles.sectionTitle}>Projects</h2>
+                <div className={styles.projectsGrid}>
+                    {projects.map((project, index) => (
+                        <div key={index} className={styles.projectCard}>
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className={styles.projectImage}
+                            />
+                            <h3 className={styles.projectTitle}>{project.title}</h3>
+                            <p className={styles.projectDescription}>{project.description}</p>
+                            <div className={styles.projectTags}>
+                                {project.tags.map((tag, tagIndex) => (
+                                    <span key={tagIndex} className={styles.tag}>
+                                        {tag}
+                                    </span>
+                                ))}
                             </div>
-                            <img src={project.imageURL} alt={`${project.title} preview`} />
                         </div>
-                    ) : (
-                        <Link
-                            href={`/projects/${encodeURIComponent(project.title)}`}
-                            key={project.title}
-                            className="project-card"
-                        >
-                            <h2>{project.title}</h2>
-                            <p>{project.description}</p>
-                            <div className="tags">
-                                {project.tags ? project.tags.join(', ') : 'No tags available'}
-                            </div>
-                            <img src={project.imageURL} alt={`${project.title} preview`} />
-                        </Link>
-                    )
-                )}
+                    ))}
+                </div>
             </div>
             <Footer />
-        </main>
+        </>
     );
 }
+
+export default Projects;

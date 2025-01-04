@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "@/components/navBar";
 
+import Footer from "@/components/footer";
+
 export default function ContactMe() {
   const [formData, setFormData] = useState({
     name: "",
@@ -116,9 +118,8 @@ export default function ContactMe() {
 
             {formStatus && (
               <p
-                className={`mt-4 text-center ${
-                  formStatus.includes("success") ? "text-green-500" : "text-red-500"
-                }`}
+                className={`mt-4 text-center ${formStatus.includes("success") ? "text-green-500" : "text-red-500"
+                  }`}
               >
                 {formStatus}
               </p>
@@ -126,6 +127,7 @@ export default function ContactMe() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

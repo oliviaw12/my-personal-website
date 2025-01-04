@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Navbar from "@/components/navBar";
-
-import Footer from "@/components/footer"
-
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -17,12 +15,12 @@ export default function Home() {
             alt="Olivia Wong"
             width={300}
             height={300}
-            className="rounded-full border-4 border-primary object-cover"
+            className="rounded-full  border-primary object-cover"
           />
         </div>
 
         {/* Right Section: Text */}
-        <div className="home-text text-center lg:text-left">
+        <div className="home-text text-center lg:text-left ml-9">
           <div className="home-intro-en text-7xl font-semibold mb-6">
             Hi, I'm Olivia Wong
           </div>
@@ -31,10 +29,35 @@ export default function Home() {
             CS Student @ UofT | Software Developer | UI/UX Designer
           </div>
 
-          <div className="home-description text-base lg:text-lg">
-            I'm a Computer Science student with a passion for coding and web development. Currently, I'm learning new technologies and frameworks to build impactful and innovative web applications.
-            <br />
-            When I'm not coding, I enjoy exploring new places, reading, and practicing photography.
+          {/* Social Icons Section */}
+          <div className="social-icons flex justify-center lg:justify-start space-x-8 mt-6">
+            {/* GitHub Icon */}
+            <a
+              href="https://github.com/oliviaw12"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-3xl hover:text-primary transition duration-100"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+
+            {/* LinkedIn Icon */}
+            <a
+              href="https://www.linkedin.com/in/olivia-wongg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-3xl hover:text-primary transition duration-100"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
+
+            {/* Email Icon */}
+            <a
+              href="mailto:o.wong@mail.utoronto.ca"
+              className="text-3xl hover:text-primary transition duration-100"
+            >
+              <i className="fas fa-envelope"></i>
+            </a>
           </div>
         </div>
       </main>
