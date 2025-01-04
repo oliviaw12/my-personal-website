@@ -1,66 +1,114 @@
 .projectsSection {
-  padding: 40px;
-  background-color: #f4f4f4;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #f7f7f7 0%, #eaeaea 100%);
   min-height: 100vh;
-  /* Ensure the section fills the entire screen height */
   box-sizing: border-box;
-  /* Ensure padding is included in the height calculation */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 60px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #333;
+  text-transform: capitalize;
+  letter-spacing: 1px;
 }
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
   justify-content: center;
-  align-items: start;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .projectCard {
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
 }
 
 .projectCard:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .projectImage {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
+  border-bottom: 2px solid #f4f4f4;
+  transition: transform 0.4s ease;
+}
+
+.projectCard:hover .projectImage {
+  transform: scale(1.05);
 }
 
 .projectTitle {
-  font-size: 1.8rem;
-  margin: 15px 20px;
+  font-size: 1.6rem;
+  margin: 20px;
+  color: #222;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 }
 
 .projectDescription {
-  padding: 0 20px;
+  padding: 0 20px 20px;
   font-size: 1rem;
-  color: #555;
+  color: #666;
+  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .projectTags {
   padding: 15px 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  border-top: 1px solid #f0f0f0;
+  background: #f9f9f9;
 }
 
 .tag {
-  background: #eee;
+  background: #007bff;
+  color: #fff;
   padding: 8px 15px;
-  border-radius: 15px;
+  border-radius: 20px;
   font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tag:hover {
+  background: #0056b3;
+  transform: translateY(-3px);
+}
+
+/* Responsive Enhancements */
+@media screen and (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+
+  .projectsGrid {
+    gap: 30px;
+  }
+
+  .projectCard {
+    margin: 0 auto;
+  }
 }
