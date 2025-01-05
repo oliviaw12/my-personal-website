@@ -2,14 +2,16 @@ import React from "react";
 import styles from '../css/projects.module.css';
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer"
+import { useTheme } from "../context/ThemeContext";
 
 const projects = [
     {
         title: "Examly",
         description:
             "An interactive website that showcases my skills and projects in a visually appealing manner.",
-        tags: ["React", "Python", "AWS"],
+        tags: ["React", "Python", "AWS Sagemaker", "AWS S3", "IAM", "TypeScript"],
         image: "/images/examly.png",
+        github: "https://github.com/zfjuliana/HTSL-Examly",
     },
     {
         title: "Tayste",
@@ -24,6 +26,7 @@ const projects = [
             "An add-on to Scotiabank’s app that offers users personalized educational modules on fraud prevention, tailored to their transaction history and demographics",
         tags: ["Figma", "Python", "NumPy"],
         image: "/images/FraudFighters.png",
+        github: "https://github.com/oliviaw12/FraudFighters",
     },
     {
         title: "Friendify",
@@ -31,42 +34,55 @@ const projects = [
             "A friend-matching app that matches users based on commonalities in their Spotify playlists.",
         tags: ["Java", "Swing", "JSON"],
         image: "/images/friendify.jpeg",
+        github: "https://github.com/not-ryan-ning/Friendify",
     },
     {
-        title: "Games Recommender",
+        title: "Steam Games Recommender",
         description:
             "A game recommending app that suggests Steam games based on community reviews and user preferences.",
         tags: ["Python", "Tkinter"],
         image: "/images/SteamGames.jpeg",
+        github: "https://github.com/oliviaw12/Steam-Games-Recommender",
     },
 ];
 
 function Projects() {
+    const { theme } = useTheme();
+
     return (
         <>
             <Navbar />
-            <div className={styles.projectsSection}>
-                <h2 className={styles.sectionTitle}>Projects</h2>
+             <div className={`${styles.projectsSection} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
+                <h1 className="text-4xl font-bold mt-16 mb-8 text-center">Projects </h1>
                 <div className={styles.projectsGrid}>
                     {projects.map((project, index) => (
-                        <div key={index} className={styles.projectCard}>
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className={styles.projectImage}
-                            />
-                            <h3 className={styles.projectTitle}>{project.title}</h3>
-                            <p className={styles.projectDescription}>{project.description}</p>
-                            <div className={styles.projectTags}>
-                                {project.tags.map((tag, tagIndex) => (
-                                    <span key={tagIndex} className={styles.tag}>
-                                        {tag}
-                                    </span>
-                                ))}
+                        <a
+                            key={index}
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.projectCardLink}
+                        >
+                            <div className={styles.projectCard}>
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className={styles.projectImage}
+                                />
+                                <h3 className={styles.projectTitle}>{project.title}</h3>
+                                <p className={styles.projectDescription}>{project.description}</p>
+                                <div className={styles.projectTags}>
+                                    {project.tags.map((tag, tagIndex) => (
+                                        <span key={tagIndex} className={styles.tag}>
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
+
             </div>
             <Footer />
         </>

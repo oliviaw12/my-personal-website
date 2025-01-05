@@ -1,38 +1,40 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Navbar() {
-  const [theme, setTheme] = useState("light");
-  const [isLoading, setIsLoading] = useState(true);  // New state for loading
+  // const [theme, setTheme] = useState("light");
+  // const [isLoading, setIsLoading] = useState(true);  // New state for loading
 
   // Load theme from localStorage on page load
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      // Default theme if no saved theme
-      setTheme("light");
-    }
-    setIsLoading(false);  // Set loading to false after checking localStorage
-  }, []);
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem("theme");
+  //   if (savedTheme) {
+  //     setTheme(savedTheme);
+  //   } else {
+  //     // Default theme if no saved theme
+  //     setTheme("light");
+  //   }
+  //   setIsLoading(false);  // Set loading to false after checking localStorage
+  // }, []);
 
-  // Update theme in both state and localStorage
-  const handleThemeToggle = (event) => {
-    const newTheme = event.target.checked ? "synthwave" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme); // Save the selected theme in localStorage
-  };
+  // // Update theme in both state and localStorage
+  // const handleThemeToggle = (event) => {
+  //   const newTheme = event.target.checked ? "synthwave" : "light";
+  //   setTheme(newTheme);
+  //   localStorage.setItem("theme", newTheme); // Save the selected theme in localStorage
+  // };
 
-  useEffect(() => {
-    if (!isLoading) {
-      document.documentElement.setAttribute("data-theme", theme);
-    }
-  }, [theme, isLoading]);
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     document.documentElement.setAttribute("data-theme", theme);
+  //   }
+  // }, [theme, isLoading]);
 
-  if (isLoading) {
-    return null;  // Optionally render a loading spinner or nothing while waiting
-  }
+  // if (isLoading) {
+  //   return null;  
+  // }
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-neutral/90 text-white shadow-lg rounded-lg px-6 py-3 w-[90%] max-w-12xl">
@@ -93,11 +95,9 @@ export default function Navbar() {
             <i className="fas fa-envelope"></i>
           </a>
           <label className="swap swap-rotate">
-            {/* Hidden checkbox controls state */}
             <input
               type="checkbox"
-              className="theme-controller"
-              onChange={handleThemeToggle}
+              onChange={toggleTheme}
               checked={theme === "synthwave"}
             />
 

@@ -1,9 +1,12 @@
 import React from "react";
 import styles from '../css/footer.module.css';
+import { useTheme } from "../context/ThemeContext";
 
 function Footer() {
+  const { theme } = useTheme();
+
   return (
-    <div className={styles.footer}>
+    <div className={`${styles.footer} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
       {/* Divider */}
       <div className={styles['footer-div2']}>
         <hr className={styles['footer-line']} />

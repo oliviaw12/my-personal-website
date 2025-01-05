@@ -1,0 +1,136 @@
+/* contact.module.css */
+
+/* Global Styles */
+.contactContainer {
+    min-height: 100vh;
+    padding: 60px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .contactContainer.light {
+    background-color: whitesmoke;
+    color: #333333;
+  }
+  
+  .contactContainer.synthwave {
+    background-color: #1d242e;
+    color: #bfbfc9;
+  }
+  
+  .contactForm {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contactTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .contactSubTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  
+  /* Form Elements */
+  .inputField {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .inputField:focus {
+    border-color: #3b82f6;
+  }
+  
+  .textareaField {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .textareaField:focus {
+    border-color: #3b82f6;
+  }
+  
+  /* Button */
+  .submitButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submitButton:hover {
+    background-color: #2563eb;
+  }
+  
+  .submitButton:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+  }
+  
+  /* Status Message */
+  .statusMessage {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .statusSuccess {
+    color: #10b981;
+  }
+  
+  .statusError {
+    color: #ef4444;
+  }
+  
+  /* Dark Mode */
+  .dark .contactContainer {
+    background-color: #1d242e;
+    color: #e5e7eb;
+  }
+  
+  .dark .contactForm {
+    background-color: #374151;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .inputField,
+  .dark .textareaField {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    color: #e5e7eb;
+  }
+  
+  .dark .inputField:focus,
+  .dark .textareaField:focus {
+    border-color: #3b82f6;
+  }
+  
+  .dark .submitButton {
+    background-color: #3b82f6;
+  }
+  
+  .dark .submitButton:hover {
+    background-color: #2563eb;
+  }
+  

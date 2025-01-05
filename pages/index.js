@@ -2,8 +2,15 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
+import { useRouter } from "next/router"; 
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleMessageMeClick = () => {
+    router.push("/contact-me"); 
+  };
+
   return (
     <>
       <Navbar />
@@ -21,43 +28,22 @@ export default function Home() {
 
         {/* Right Section: Text */}
         <div className="home-text text-center lg:text-left ml-9">
-          <div className="home-intro-en text-7xl font-semibold mb-6">
+          <h1 className="home-intro-en text-7xl font-semibold mb-6">
             Hi, I'm Olivia Wong
-          </div>
+          </h1>
 
           <div className="home-text-sub text-2xl mb-6">
             CS Student @ UofT | Software Developer | UI/UX Designer
           </div>
 
-          {/* Social Icons Section */}
-          <div className="social-icons flex justify-center lg:justify-start space-x-8 mt-6">
-            {/* GitHub Icon */}
-            <a
-              href="https://github.com/oliviaw12"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl hover:text-primary transition duration-100"
+           {/* Message Me Button */}
+           <div className="button-container mt-6">
+            <button 
+              onClick={handleMessageMeClick} 
+              className="message-me-btn text-white px-6 py-3 rounded-full text-xl font-medium shadow-xl hover:bg-primary-dark transition duration-200" 
             >
-              <i className="fab fa-github"></i>
-            </a>
-
-            {/* LinkedIn Icon */}
-            <a
-              href="https://www.linkedin.com/in/olivia-wongg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl hover:text-primary transition duration-100"
-            >
-              <i className="fab fa-linkedin"></i>
-            </a>
-
-            {/* Email Icon */}
-            <a
-              href="mailto:o.wong@mail.utoronto.ca"
-              className="text-3xl hover:text-primary transition duration-100"
-            >
-              <i className="fas fa-envelope"></i>
-            </a>
+              Message Me
+            </button>
           </div>
         </div>
       </main>

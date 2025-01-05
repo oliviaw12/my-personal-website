@@ -1,11 +1,15 @@
 /* Base Reset */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f0f0;
+  background-color: whitesmoke;
   overflow-x: hidden;
   width: 100%;
   height: 100%;
@@ -14,7 +18,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 ul,
@@ -25,16 +30,12 @@ li {
   margin: 0;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
-  font-weight: 600;
-  margin: 0;
-}
 
 h1 {
+  font-family: 'Source Serif Pro', serif;
   font-size: 2.5rem;
 }
+
 
 h2 {
   font-size: 2rem;
@@ -45,18 +46,28 @@ h3 {
 }
 
 p {
-  font-size: 1rem;
+  width: fit-content;
+  height: fit-content;
   font-weight: 400;
-  margin: 0;
 }
 
-/* Links & Buttons */
-a, button {
+p a {
+  text-decoration: underline;
+}
+
+p a:hover {
   text-decoration: none;
-  cursor: pointer;
+}
+
+a,
+button {
+  width: fit-content;
+  height: fit-content;
+
+  text-decoration: none;
   font-size: inherit;
-  color: inherit;
-  transition: opacity 0.2s;
+  /* border: 1px solid red; */
+  cursor: pointer;
 }
 
 a:hover, button:hover {
@@ -87,23 +98,6 @@ a:hover, button:hover {
   gap: 1rem;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar a {
-  font-weight: 600;
-}
-
 /* Content Sections */
 .section {
   padding: 2rem 1rem;
@@ -117,57 +111,6 @@ a:hover, button:hover {
   line-height: 1.6;
 }
 
-/* Skill Badges */
-.skill-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #fff;
-  background-color: #007bff;
-  border-radius: 1rem;
-  margin: 0.25rem;
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 1rem;
-  width: 2px;
-  height: 100%;
-  background-color: #007bff;
-}
-
-.timeline-entry {
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.timeline-entry::before {
-  content: '';
-  position: absolute;
-  top: 0.5rem;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  background-color: #007bff;
-  border-radius: 50%;
-}
-
-.timeline-entry h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.timeline-entry p {
-  margin: 0;
-}
 
 /* Media Queries */
 @media screen and (max-width: 768px) {
@@ -188,26 +131,3 @@ a:hover, button:hover {
     padding: 0 0.5rem;
   }
 }
-
-
-
-/* body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f0f0f0;
-    overflow-x: hidden;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    transition: 0.2s;
-  }
-  
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-} */

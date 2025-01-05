@@ -5,8 +5,20 @@
     background: transparent; /* Adjust as needed */
     color: inherit;
     font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .footer.light {
+    background-color: whitesmoke;
+    color: #333333;
   }
   
+  .footer.synthwave {
+    background-color: #1d242e;
+    color: #bfbfc9;
+  }
+  
+
   .footer-div1 {
     display: flex;
     justify-content: flex-end;
@@ -21,7 +33,7 @@
   }
   
   .footer-contact a:hover {
-    color: #00aaff; /* Adjust hover color */
+    color: #9494bf; /* Adjust hover color */
   }
   
   .footer-div2 {
@@ -55,7 +67,7 @@
   }
   
   .footer-icon:hover {
-    color: #00aaff; /* Adjust hover color */
+    color: #8898c7 /* Adjust hover color */
   }
   
   @media (max-width: 760px) {
