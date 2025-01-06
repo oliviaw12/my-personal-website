@@ -8,7 +8,7 @@ const projects = [
     {
         title: "Examly",
         description:
-            "An interactive website that showcases my skills and projects in a visually appealing manner.",
+            "An exam scheduling app that prevents conflicts for professors and students by using machine learning, including genetic algorithms and reinforcement learning.",
         tags: ["React", "Python", "AWS Sagemaker", "AWS S3", "IAM", "TypeScript"],
         image: "/images/examly.png",
         github: "https://github.com/zfjuliana/HTSL-Examly",
@@ -43,6 +43,14 @@ const projects = [
         tags: ["Python", "Tkinter"],
         image: "/images/SteamGames.jpeg",
         github: "https://github.com/oliviaw12/Steam-Games-Recommender",
+    },
+    {
+        title: "My personal website",
+        description:
+            "An interactive website that showcases my skills and projects in a visually appealing manner.",
+        tags: ["React", "Python", "AWS Sagemaker", "AWS S3", "IAM", "TypeScript"],
+        image: "/images/website.png",
+        github: "https://github.com/oliviaw12/my-personal-website",
     },
 ];
 
