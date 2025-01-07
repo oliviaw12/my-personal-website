@@ -4,7 +4,7 @@
     padding: 20px 50px;
     background: transparent; /* Adjust as needed */
     color: inherit;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 

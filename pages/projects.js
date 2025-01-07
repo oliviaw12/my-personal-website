@@ -48,7 +48,7 @@ const projects = [
         title: "My personal website",
         description:
             "An interactive website that showcases my skills and projects in a visually appealing manner.",
-        tags: ["React", "Python", "AWS Sagemaker", "AWS S3", "IAM", "TypeScript"],
+        tags: ["React", "JavaScript", "CSS"],
         image: "/images/website.png",
         github: "https://github.com/oliviaw12/my-personal-website",
     },

@@ -2,104 +2,53 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "../context/ThemeContext";
 
+import styles from "@/css/nav.module.css";
+
 export default function Navbar() {
-  // const [theme, setTheme] = useState("light");
-  // const [isLoading, setIsLoading] = useState(true);  // New state for loading
-
-  // Load theme from localStorage on page load
-  // useEffect(() => {
-  //   const savedTheme = localStorage.getItem("theme");
-  //   if (savedTheme) {
-  //     setTheme(savedTheme);
-  //   } else {
-  //     // Default theme if no saved theme
-  //     setTheme("light");
-  //   }
-  //   setIsLoading(false);  // Set loading to false after checking localStorage
-  // }, []);
-
-  // // Update theme in both state and localStorage
-  // const handleThemeToggle = (event) => {
-  //   const newTheme = event.target.checked ? "synthwave" : "light";
-  //   setTheme(newTheme);
-  //   localStorage.setItem("theme", newTheme); // Save the selected theme in localStorage
-  // };
-
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     document.documentElement.setAttribute("data-theme", theme);
-  //   }
-  // }, [theme, isLoading]);
-
-  // if (isLoading) {
-  //   return null;  
-  // }
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-neutral/90 text-white shadow-lg rounded-lg px-6 py-3 w-[90%] max-w-12xl">
-      {/* Navbar Content */}
+    <div className={`${styles.navContainer} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
       <div className="flex justify-between items-center w-full">
-        {/* Logo */}
         <div className="text-xl font-bold">
           <Link href="/">olivia wong</Link>
-          
         </div>
 
-        {/* Center Links Container */}
         <div className="flex-1 flex justify-center">
           <div className="hidden lg:flex space-x-11">
-            <Link href="/" className="text-lg hover:text-primary font-semibold">
+            <Link href="/" className="text-md hover:text-primary font-semibold">
               Home
             </Link>
-            <Link href="/about-me" className="text-lg hover:text-primary font-semibold">
+            <Link href="/about-me" className="text-md hover:text-primary font-semibold">
               About Me
             </Link>
-            <Link href="/projects" className="text-lg hover:text-primary font-semibold">
+            <Link href="/projects" className="text-md hover:text-primary font-semibold">
               Projects
             </Link>
-            <Link href="/contact-me" className="text-lg hover:text-primary font-semibold">
+            <Link href="/contact-me" className="text-md hover:text-primary font-semibold">
               Contact Me
             </Link>
           </div>
         </div>
 
-        {/* Theme Toggle */}
         <div className="flex items-center gap-2">
-        <a
-            href="https://github.com/oliviaw12"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-3xl hover:text-primary transition duration-100"
-          ></a>
-          <a
-            href="https://github.com/oliviaw12"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-2xl hover:text-primary ml-5 transition duration-100"
-          >
+          <a href="https://github.com/oliviaw12" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary ml-5">
             <i className="fab fa-github"></i>
           </a>
-          <a
-            href="https://www.linkedin.com/in/olivia-wongg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-2xl hover:text-primary ml-5 transition duration-100"
-          >
+          <a href="https://www.linkedin.com/in/olivia-wongg" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary ml-5">
             <i className="fab fa-linkedin"></i>
           </a>
-          <a
-            href="mailto:o.wong@mail.utoronto.ca"
-            className="text-2xl hover:text-primary ml-5 mr-6 transition duration-100"
-          >
+          <a href="mailto:o.wong@mail.utoronto.ca" className="text-2xl hover:text-primary ml-5 mr-6">
             <i className="fas fa-envelope"></i>
           </a>
           <label className="swap swap-rotate">
-            <input
-              type="checkbox"
-              onChange={toggleTheme}
-              checked={theme === "synthwave"}
-            />
+            <input type="checkbox" onChange={toggleTheme} checked={theme === "synthwave"} />
+            <svg className="swap-off h-10 w-10 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="..." />
+            </svg>
+            <svg className="swap-on h-10 w-10 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="..." />
+            </svg>
 
             {/* Sun icon */}
             <svg
@@ -122,5 +71,6 @@ export default function Navbar() {
         </div>
       </div>
     </div>
+    // </div>
   );
-}
+}  

@@ -38,10 +38,10 @@ export default function ContactMe() {
 
     try {
       await emailjs.sendForm(
-        "your_service_id",
-        "your_template_id",
+        "service_wae1871",
+        "template_chs5677",
         form.current,
-        "your_public_key"
+        "HMbBJHhU_3dLNOVyX"
       );
       setFormStatus("Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
