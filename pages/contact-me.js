@@ -3,6 +3,7 @@ import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
 import styles from "@/css/contact.module.css";
 import { useTheme } from "../context/ThemeContext";
+import emailjs from 'emailjs-com';
 
 export default function ContactMe() {
   const { theme } = useTheme();
@@ -25,13 +26,24 @@ export default function ContactMe() {
     });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const sendEmail = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setFormStatus("Sending...");
 
     if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus("Please don't leave a field empty!");
+      setFormStatus("Please fill out all fields.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      setFormStatus("Please enter a valid email address.");
       setIsSubmitting(false);
       return;
     }
@@ -46,7 +58,8 @@ export default function ContactMe() {
       setFormStatus("Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      setFormStatus("An error occurred. Please try again.");
+      console.error("Error sending message:", error);
+      setFormStatus("An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -64,10 +77,7 @@ export default function ContactMe() {
 
             <form onSubmit={sendEmail} ref={form}>
               <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
+                <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-2">
                   Name
                 </label>
                 <input
@@ -82,10 +92,7 @@ export default function ContactMe() {
               </div>
 
               <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
+                <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2">
                   Email
                 </label>
                 <input
@@ -100,10 +107,7 @@ export default function ContactMe() {
               </div>
 
               <div className="mb-6">
-                <label
-                  htmlFor="message"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
+                <label htmlFor="message" className="block text-lg font-medium text-gray-700 mb-2">
                   Message
                 </label>
                 <textarea
@@ -127,13 +131,7 @@ export default function ContactMe() {
             </form>
 
             {formStatus && (
-              <p
-                className={`${styles.statusMessage} ${
-                  formStatus.includes("success")
-                    ? styles.statusSuccess
-                    : styles.statusError
-                }`}
-              >
+              <p className={`${styles.statusMessage} ${formStatus.includes("success") ? styles.statusSuccess : styles.statusError}`}>
                 {formStatus}
               </p>
             )}
