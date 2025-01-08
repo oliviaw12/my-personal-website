@@ -33,7 +33,7 @@ const projects = [
         description:
             "A friend-matching app that matches users based on commonalities in their Spotify playlists.",
         tags: ["Java", "Swing", "JSON"],
-        image: "/images/friendify.jpeg",
+        image: "/images/Friendify.jpeg",
         github: "https://github.com/not-ryan-ning/Friendify",
     },
     {
@@ -45,7 +45,7 @@ const projects = [
         github: "https://github.com/oliviaw12/Steam-Games-Recommender",
     },
     {
-        title: "My personal website",
+        title: "My Personal Website",
         description:
             "An interactive website that showcases my skills and projects in a visually appealing manner.",
         tags: ["React", "JavaScript", "CSS"],

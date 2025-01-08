@@ -32,13 +32,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a href="https://github.com/oliviaw12" target="_blank" rel="noopener noreferrer" className="text-2xl ml-5" style={{ color: '#9694a5' }}>
+          <a href="https://github.com/oliviaw12" target="_blank" rel="noopener noreferrer" className="text-2xl ml-5" >
             <i className="fab fa-github"></i>
           </a>
-          <a href="https://www.linkedin.com/in/olivia-wongg" target="_blank" rel="noopener noreferrer" className="text-2xl ml-5" style={{ color: '#9694a5' }}>
+          <a href="https://www.linkedin.com/in/olivia-wongg" target="_blank" rel="noopener noreferrer" className="text-2xl ml-5">
             <i className="fab fa-linkedin"></i>
           </a>
-          <a href="mailto:o.wong@mail.utoronto.ca" className="text-2xl ml-5 mr-6" style={{ color: '#9694a5' }}>
+          <a href="mailto:o.wong@mail.utoronto.ca" className="text-2xl ml-5 mr-6">
             <i className="fas fa-envelope"></i>
           </a>
           <label className="swap swap-rotate">

@@ -24,13 +24,13 @@ export default function AboutMe() {
     <>
       <Navbar />
       <div className={`${styles.container} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
-      
+
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold mt-16 mb-8 text-center">About Me</h1>
-            
+
           <div className={styles.description}>
             I am a motivated third-year Computer Science student at the University of Toronto, with a minor in Mathematics. I'm passionate about AI, software and web development, as well as UI/UX design.
-  
+
             When I'm not coding, I enjoy exploring new places, reading, and drawing.
 
           </div>
@@ -57,15 +57,17 @@ export default function AboutMe() {
                   <div className={styles.timelineCircle}></div>
                   <div className="text-center mt-4">
                     <h3 className="text-lg font-semibold mb-2">{exp.title}</h3>
-                    <p className={styles.timelineCompany}>{exp.company}</p>
-                    <p className={styles.date}>{exp.date}</p>
+                    <div className={styles.timelineContent}>
+                      <p className={styles.timelineCompany}>{exp.company}</p>
+                      <p className={styles.date}>{exp.date}</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </section>
         </div>
-        </div>
+      </div>
 
       <Footer />
     </>
