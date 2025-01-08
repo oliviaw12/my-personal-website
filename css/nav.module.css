@@ -85,6 +85,10 @@
   font-size: 32pt;
 }
 
+.icon {
+  color: gray;
+}
+
 .nav-bar {
   height: fit-content;
   width: fit-content;

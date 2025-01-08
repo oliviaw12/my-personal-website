@@ -14,7 +14,7 @@ function Footer() {
 
       {/* Footer Info Section */}
       <div className={styles['footer-div3']}>
-        <span className={styles['footer-marker']}>2025 Olivia Wong</span>
+        <span className={styles['footer-marker']}> &copy; 2025 Olivia Wong</span>
         <div className={styles['footer-icons']}>
           <a
             href="https://github.com/oliviaw12"

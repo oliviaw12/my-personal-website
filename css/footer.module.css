@@ -4,7 +4,6 @@
     padding: 20px 50px;
     background: transparent; /* Adjust as needed */
     color: inherit;
-    font-family: 'Helvetica', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
@@ -18,7 +17,6 @@
     color: #bfbfc9;
   }
   
-
   .footer-div1 {
     display: flex;
     justify-content: flex-end;
@@ -53,6 +51,8 @@
   
   .footer-marker {
     font-size: 1rem;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 800;
   }
   
   .footer-icons {
