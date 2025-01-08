@@ -26,7 +26,7 @@
 .description {
   font-size: 1.1rem;
   line-height: 1.8;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .button {
@@ -132,10 +132,19 @@
   margin-bottom: 0.5rem;
 }
 
+.container.light .timelineCompany {
+  color: #333;
+}
+
+.container.synthwave .timelineCompany {
+  color: #dfdfdf;
+}
+
 .date {
   font-size: 14px;
   color: #666;
   margin-top: 5px;
+  text-align: center;
 }
 
 .relative {

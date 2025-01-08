@@ -57,7 +57,7 @@ export default function AboutMe() {
                   <div className="text-center mt-4">
                     <h3 className="text-lg font-semibold mb-2">{exp.title}</h3>
                     <p className={styles.timelineCompany}>{exp.company}</p>
-                    <p className="text-sm text-center mt-1">{exp.date}</p>
+                    <p className={styles.date}>{exp.date}</p>
                   </div>
                 </div>
               ))}
