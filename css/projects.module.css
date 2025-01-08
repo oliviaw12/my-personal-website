@@ -10,7 +10,7 @@
 }
 
 .projectsSection.light {
-  background-color: whitesmoke;
+  background-color: #f5f0e8;
   color: #333;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .projectCard {
-  background: white;
+  background: #f6f3ed;
   border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -74,7 +74,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  background: #f4f4f4;
+  background: whitesmoke;
   border-top: 1px solid #e5e5e5;
 }
 

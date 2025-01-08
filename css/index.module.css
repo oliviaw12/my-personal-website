@@ -1,0 +1,77 @@
+/* index.module.css */
+
+/* Theme Support */
+.light {
+    background-color: #f5f0e8;
+    color: #333;
+  }
+  
+  .synthwave {
+    background-color: #1d242e;
+    color: #e0e7ff;
+  }
+  
+  .home-image {
+    position: relative;
+  }
+  
+  .home-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .home-text-sub {
+    font-style: italic;
+    color: #9694a5;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .message-me-btn {
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+  }
+  
+  .message-me-btn:hover {
+    background-color: #3f51b5;
+    cursor: pointer;
+  }
+  
+  .message-me-btn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .home-text p,
+  .home-text h1 {
+    color: inherit; /* This ensures that the text color follows the parent theme */
+  }
+
+  .custom-btn {
+    background-color: #FF5733;
+  }
+  
+  .custom-btn:hover {
+    background-color: #e04f29; /* A darker shade for hover effect */
+  }
+  
+  /* For large screens */
+  @media (min-width: 1024px) {
+    .home-text {
+      text-align: left;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .home-image {
+      margin-left: 0;
+      margin-bottom: 2rem;
+    }
+  }
+  

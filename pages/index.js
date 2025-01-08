@@ -3,9 +3,13 @@ import Image from "next/image";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
 import { useRouter } from "next/router"; 
+import styles from "@/css/index.module.css"; 
+import { useTheme } from "../context/ThemeContext";
 
 export default function Home() {
   const router = useRouter();
+
+  const { theme } = useTheme();
 
   const handleMessageMeClick = () => {
     router.push("/contact-me"); 
@@ -14,9 +18,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-base-100 flex flex-col lg:flex-row items-center justify-center px-4" >
+      <main className={`${styles.homeText} ${styles[theme === 'synthwave' ? 'synthwave' : 'light']} min-h-screen bg-base-100 flex flex-col lg:flex-row items-center justify-center px-4`} >
         {/* Left Section: Circular Image */}
-        <div className="home-image ml-8 mb-6 lg:mb-0 lg:mr-24 relative">
+        <div className={`${styles.homeImage} ml-8 mb-6 lg:mb-0 lg:mr-24 relative`}>
           <div className="absolute w-[350px] h-[350px] border-4 rounded-full" style={{ width: '350px', height: '350px', top: '-15px', left: '-15px' }}></div>
           <Image 
             src="/images/profile.jpg" 
@@ -29,13 +33,13 @@ export default function Home() {
         </div>
 
         {/* Right Section: Text */}
-        <div className="home-text text-center lg:text-left px-6">
+        <div className={`${styles.homeText} text-center lg:text-left px-6`}>
           <p className="text-3xl font-medium mb-2">Hi, my name is</p>
           <h1 className="text-8xl font-bold leading-tight mb-6">
             Olivia Wong
           </h1>
 
-          <div className="home-text-sub text-2xl mb-8">
+          <div className={styles.homeTextSub + " text-2xl mb-8"}>
             UI/UX Designer | Software Engineer | Web Developer 
           </div>
 
@@ -43,7 +47,7 @@ export default function Home() {
            <div className="button-container mt-8">
             <button 
               onClick={handleMessageMeClick} 
-              className="message-me-btn px-6 py-3 rounded-full text-lg font-bold shadow-lg hover:bg-primary-dark transition-all duration-100"
+              className={`${styles.customBtn} px-6 py-3 rounded-full text-lg font-bold shadow-lg transition-all duration-100`}
               style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)' }}
             >
               Message Me
@@ -56,3 +60,4 @@ export default function Home() {
     </>
   );
 }
+

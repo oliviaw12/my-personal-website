@@ -7,7 +7,6 @@ import { useTheme } from "../context/ThemeContext";
 export default function AboutMe() {
   const { theme } = useTheme();
 
- 
   const skills = [
     "Python", "Java", "C", "JavaScript", "React",
     "Node.js", "SQL", "Git", "HTML", "CSS",

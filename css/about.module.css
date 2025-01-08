@@ -8,13 +8,13 @@
 }
 
 .container.light {
-  background-color: whitesmoke;
+  background-color: #f5f0e8;
   color: #1d242e;
 }
 
 .container.synthwave {
   background-color: #1d242e;
-  color: #acacac;
+  color: #e0e7ff;
 }
 
 .title {
