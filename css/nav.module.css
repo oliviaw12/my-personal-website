@@ -38,6 +38,10 @@
   transition: color 0.3s;
 }
 
+.custom-hover:hover {
+  color: #8ebaef;
+}
+
 .synthwave a {
   color: #dedede;
 }

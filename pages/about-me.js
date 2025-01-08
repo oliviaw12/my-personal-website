@@ -30,8 +30,10 @@ export default function AboutMe() {
           <h1 className="text-4xl font-bold mt-16 mb-8 text-center">About Me</h1>
             
           <div className={styles.description}>
-            I'm a third-year Computer Science student at the University of Toronto, with a passion for AI, software development, and UI/UX design.
-            When I'm not coding, I enjoy exploring, reading, and drawing.
+            I am a motivated third-year Computer Science student at the University of Toronto, with a minor in Mathematics. I'm passionate about AI, software and web development, as well as UI/UX design.
+  
+            When I'm not coding, I enjoy exploring new places, reading, and drawing.
+
           </div>
 
           {/* Skills Section */}

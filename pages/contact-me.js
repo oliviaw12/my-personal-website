@@ -70,7 +70,7 @@ export default function ContactMe() {
       <Navbar />
       <div className={`${styles.contactContainer} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
         <div className="max-w-5xl mx-auto">
-          <h1 className={styles.contactTitle}>Contact Me</h1>
+          <h1 className="text-4xl font-bold mt-16 mb-8 text-center">Contact Me</h1>
 
           <div className={styles.contactForm}>
             <h2 className={styles.contactSubTitle}>Hello! Please leave me a message here.</h2>

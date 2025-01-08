@@ -16,29 +16,29 @@ export default function Navbar() {
 
         <div className="flex-1 flex justify-center">
           <div className="hidden lg:flex space-x-11">
-            <Link href="/" className="text-md hover:text-primary font-semibold">
+            <Link href="/" className="text-md custom-hover font-semibold">
               Home
             </Link>
-            <Link href="/about-me" className="text-md hover:text-primary font-semibold">
-              About Me
+            <Link href="/about-me" className="text-md custom-hover font-semibold">
+              About
             </Link>
-            <Link href="/projects" className="text-md hover:text-primary font-semibold">
+            <Link href="/projects" className="text-md custom-hover font-semibold">
               Projects
             </Link>
-            <Link href="/contact-me" className="text-md hover:text-primary font-semibold">
-              Contact Me
+            <Link href="/contact-me" className="text-md custom-hover font-semibold">
+              Contact
             </Link>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <a href="https://github.com/oliviaw12" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary ml-5">
+          <a href="https://github.com/oliviaw12" target="_blank" rel="noopener noreferrer" className="text-2xl ml-5" style={{ color: '#9694a5' }}>
             <i className="fab fa-github"></i>
           </a>
-          <a href="https://www.linkedin.com/in/olivia-wongg" target="_blank" rel="noopener noreferrer" className="text-2xl hover:text-primary ml-5">
+          <a href="https://www.linkedin.com/in/olivia-wongg" target="_blank" rel="noopener noreferrer" className="text-2xl ml-5" style={{ color: '#9694a5' }}>
             <i className="fab fa-linkedin"></i>
           </a>
-          <a href="mailto:o.wong@mail.utoronto.ca" className="text-2xl hover:text-primary ml-5 mr-6">
+          <a href="mailto:o.wong@mail.utoronto.ca" className="text-2xl ml-5 mr-6" style={{ color: '#9694a5' }}>
             <i className="fas fa-envelope"></i>
           </a>
           <label className="swap swap-rotate">
