@@ -54,14 +54,14 @@
 }
 
 .container.light .skillBadge {
-  color: #333;
-  background-color: var(--primary-color);
+  color: whitesmoke;
+  background-color: #2e4665;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .container.synthwave .skillBadge {
-  color: #dfdfdf;
-  background-color: var(--primary-color);
+  color: #ffffff;
+  background-color: #4d688a;
   box-shadow: 0 4px 8px rgba(69, 69, 92, 0.5);
 }
 
@@ -100,9 +100,9 @@
   position: relative;
   width: 14px;
   height: 14px;
-  background-color: #d3d3d3;
+  background-color: #2e4665;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid #2e4665;
   z-index: 2;
 }
 
