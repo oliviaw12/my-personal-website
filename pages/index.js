@@ -47,7 +47,7 @@ export default function Home() {
            <div className="button-container mt-8">
             <button 
               onClick={handleMessageMeClick} 
-              className={`${styles.customBtn} px-6 py-3 rounded-full text-lg font-bold shadow-lg transition-all duration-100`}
+              className={`${styles.customBtn} px-6 py-3 rounded-full text-lg font-bold shadow-lg`}
               style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)' }}
             >
               Message Me

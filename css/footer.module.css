@@ -4,7 +4,6 @@
     padding: 20px 50px;
     background: transparent; /* Adjust as needed */
     color: inherit;
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   .footer.light {

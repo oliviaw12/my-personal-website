@@ -29,7 +29,8 @@
 }
 
 .projectsSection.synthwave .projectTitle {
-  color: #e0e7ff;
+  color: #fff;
+  font-weight: 650;
 }
 
 .projectsSection.synthwave .projectDescription {
@@ -37,8 +38,8 @@
 }
 
 .projectsSection.synthwave .tag {
-  background: #e8e7e7;
-  color: #2b3242;
+  background: #4d688a;
+  color: #fff;
 }
 
 .projectsSection.synthwave .projectTags {

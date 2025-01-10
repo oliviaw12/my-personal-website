@@ -4,7 +4,6 @@
 .container {
   padding: 60px 20px;
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container.light {
@@ -37,7 +36,6 @@
   font-weight: 500;
   cursor: pointer;
   box-shadow: 0 4px 10px var(--shadow-color);
-  transition: background-color 0.3s ease;
 }
 
 .button:hover {
@@ -50,7 +48,6 @@
   font-weight: 600;
   border-radius: 9999px;
   box-shadow: 0 6px 6px var(--shadow-color);
-  transition: transform 0.2s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .container.light .skillBadge {
@@ -62,7 +59,6 @@
 .container.synthwave .skillBadge {
   color: #ffffff;
   background-color: #4d688a;
-  box-shadow: 0 4px 8px rgba(69, 69, 92, 0.5);
 }
 
 .skillBadge:hover {
@@ -79,13 +75,15 @@
 
 .timelineLine {
   position: absolute;
-  top: 50%;
+  top: 50%; /* Vertically center the line within the container */
   left: 0;
+  transform: translateY(-50%); /* Ensure centering works correctly */
   width: 100%;
-  height: 2px;
+  height: 2px; /* Thickness of the line */
   background-color: #e0e0e0;
   z-index: 1;
 }
+
 
 .timelineItem {
   position: relative;
@@ -94,8 +92,9 @@
   align-items: center;
   text-align: center;
   min-width: 200px;
-  justify-content: flex-start; /* Ensures even vertical spacing */
+  z-index: 2;
 }
+
 
 .timelineCircle {
   position: relative;
@@ -105,12 +104,13 @@
   border-radius: 50%;
   border: 2px solid #2e4665;
   z-index: 2;
+
 }
 
 .timelineCircle::before {
   content: '';
   position: absolute;
-  top: 50%;
+  top: 50%; /* Center this pseudo-element with respect to the circle */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 20px;
@@ -147,7 +147,7 @@
 
 .date {
   font-size: 14px;
-  color: #666;
+
   margin-top: 0;
 }
 
