@@ -25,9 +25,10 @@
   color: #333333;
 }
 
-.navContainer.dark {
-  background-color: #1d242e;
-  color: #333333;
+.navContainer.synthwave {
+  background-color: #1d242e; 
+  color: #e0e7ff; 
+  
 }
 
 .navLink {

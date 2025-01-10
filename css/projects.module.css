@@ -19,6 +19,34 @@
   color: #e0e7ff;
 }
 
+/* Updated project card for synthwave theme */
+.projectsSection.synthwave .projectCard {
+  background: #2b3242;
+}
+
+.projectsSection.synthwave .projectCard:hover {
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.15);
+}
+
+.projectsSection.synthwave .projectTitle {
+  color: #e0e7ff;
+}
+
+.projectsSection.synthwave .projectDescription {
+  color: #cfd8e3;
+}
+
+.projectsSection.synthwave .tag {
+  background: #e8e7e7;
+  color: #2b3242;
+}
+
+.projectsSection.synthwave .projectTags {
+  background: #2e3545; /* Adjust this color as needed for the synthwave theme */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Optional: subtle border for separation */
+}
+
+/* Shared styles */
 .sectionTitle {
   font-family: 'Source Serif Pro', serif;
   font-size: 3rem;
@@ -59,7 +87,7 @@
   margin: 20px;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  color:#1d242e;
+  color: #1d242e;
 }
 
 .projectDescription {
