@@ -14,6 +14,14 @@ const projects = [
         github: "https://github.com/zfjuliana/HTSL-Examly",
     },
     {
+        title: "Scriptorium",
+        description:
+            "An interactive website for multi-language code writing, execution and sharing.",
+        tags: ["Next.js", "Prisma", "Docker", "React", "React", "TypeScript", "TailwindCSS"],
+        image: "/images/scriptorium.jpg",
+        github: "",
+    },
+    {
         title: "Tayste",
         description:
             "A cross-platform mobile app (iOS/Android) offering tailored dining discounts to students.",
@@ -44,14 +52,7 @@ const projects = [
         image: "/images/SteamGames.jpeg",
         github: "https://github.com/oliviaw12/Steam-Games-Recommender",
     },
-    {
-        title: "My Personal Website",
-        description:
-            "An interactive website that showcases my skills and projects in a visually appealing manner.",
-        tags: ["React", "JavaScript", "CSS"],
-        image: "/images/website.png",
-        github: "https://github.com/oliviaw12/my-personal-website",
-    },
+   
 ];
 
 function Projects() {
