@@ -10,7 +10,7 @@ export default function AboutMe() {
   const skills = [
     "Python", "Java", "C", "JavaScript", "React",
     "Node.js", "SQL", "Git", "HTML", "CSS",
-    "R", "Assembly", "TypeScript",
+    "R", "TypeScript",
   ];
 
   const experience = [
