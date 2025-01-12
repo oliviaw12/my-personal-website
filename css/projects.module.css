@@ -65,7 +65,7 @@
 }
 
 .projectCard {
-  background: #f6f3ed;
+  background: whitesmoke;
   border-radius: 1rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -104,7 +104,7 @@
   flex-wrap: wrap;
   gap: 12px;
   background: whitesmoke;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #2e4665;
 }
 
 .tag {
