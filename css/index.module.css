@@ -1,44 +1,80 @@
-/* index.module.css */
-
-/* Theme Support */
+/* 
+/* Theme Support with Gradients */
 .light {
-  background-color: #f9f6f1;
   color: #333;
+  /* background: linear-gradient(2deg, #ffffff, #b17aff);
+
+  background-position: center;
+  background-repeat: no-repeat; */
+  background: radial-gradient(circle, 
+              #a5abc6 20%, /* Bright yellow center */
+              
+              #ffffff 100% /* White fade-out */);
+
+  /* Constrain the Gradient Horizontally */
+  background-size: 120% 100%; /* Makes gradient narrower horizontally */
+  background-position: center top; /* Positions it in the middle top */
+  background-repeat: no-repeat; /* Prevents repetition */
 }
 
 .synthwave {
-  background-color: #1d242e;
+  background: linear-gradient(135deg, #1d242e, #2e3a4e, #4d688a);
   color: #e0e7ff;
 }
 
+/* Home Image Styles */
 .home-image {
   position: relative;
+  border: 5px solid;
+  border-radius: 10px;
 }
 
 .light .home-image {
   border-color: black;
-  /* Black border for light mode */
 }
-
 
 .synthwave .home-image {
   border-color: #e0e7ff;
-  /* Light color for synthwave theme */
 }
 
+/* Custom Button Styles */
 .custom-btn {
-  background-color: #4caf50;
-  /* Change to a greenish color */
-  color: white;
+  background-color: #FF5733;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.custom-btn:hover {
+  background-color: #e04f29;
+  transform: scale(1.05);
+}
 
+.custom-btn:active {
+  transform: scale(0.95);
+}
 
+/* Message Me Button */
+.message-me-btn {
+  background-color: #5c6bc0;
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.message-me-btn:hover {
+  background-color: #3f51b5;
+  transform: scale(1.05);
+}
+
+/* Text Styling */
 .home-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
 .home-text-sub {
@@ -46,43 +82,19 @@
   color: #9694a5;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-}
-
-.message-me-btn {
-  background-color: #5c6bc0;
-  color: white;
-  border: none;
-}
-
-.message-me-btn:hover {
-  background-color: #3f51b5;
-  cursor: pointer;
-}
-
-.message-me-btn:focus {
-  outline: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
 .home-text p,
 .home-text h1 {
   color: inherit;
-  /* This ensures that the text color follows the parent theme */
 }
 
-.custom-btn {
-  background-color: #FF5733;
+/* Gradient Overlay for Buttons Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-.custom-btn:hover {
-  background-color: #e04f29;
-  /* A darker shade for hover effect */
-}
-
-/* For large screens */
+/* Responsive Styles */
 @media (min-width: 1024px) {
   .home-text {
     text-align: left;

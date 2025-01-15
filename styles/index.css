@@ -26,7 +26,8 @@ li {
   font-size: inherit;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 5;
+  font-size: 1.5rem;
 }
 
 
@@ -41,7 +42,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.75rem;
+  font-size: 2rem;
 }
 
 p {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
+import Image from "next/image";
 import styles from "@/css/about.module.css"; // Import the module CSS
 import { useTheme } from "../context/ThemeContext";
 
@@ -28,11 +29,28 @@ export default function AboutMe() {
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold mt-16 mb-8 text-center">About Me</h1>
 
-          <div className={styles.description}>
-            I am a motivated third-year Computer Science student at the University of Toronto, with a minor in Mathematics. I'm passionate about AI, software and web development, as well as UI/UX design.
+          <div className="flex flex-col lg:flex-row items-start mb-12 gap-8">
+            {/* Circular Image */}
+            {/* <div className="relative">
+              <div
+                className="absolute w-[200px] h-[200px] border-4 rounded-full"
+                style={{ width: "200px", height: "200px", top: "-10px", left: "-10px" }}
+              ></div>
+              <Image
+                src="/images/profile.jpg"
+                alt="Olivia Wong"
+                width={180}
+                height={180}
+                className="rounded-full object-cover shadow-lg relative z-10"
+                style={{ width: "180px", height: "180px", borderRadius: "50%" }}
+              />
+            </div> */}
 
-            When I'm not coding, I enjoy exploring new places, reading, and drawing.
+            <div className={styles.description}>
+              I am a motivated third-year Computer Science student at the University of Toronto, with a minor in Mathematics. I'm passionate about AI, software and web development, as well as UI/UX design.
 
+              When I'm not coding, I enjoy exploring new places, reading, and drawing.
+            </div>
           </div>
 
           {/* Skills Section */}
