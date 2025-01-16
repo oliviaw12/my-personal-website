@@ -2,12 +2,8 @@
 /* Theme Support with Gradients */
 .light {
   color: #333;
-  /* background: linear-gradient(2deg, #ffffff, #b17aff);
-
-  background-position: center;
-  background-repeat: no-repeat; */
   background: radial-gradient(circle, 
-              #a5abc6 20%, /* Bright yellow center */
+  #507ab184 20%,
               
               #ffffff 100% /* White fade-out */);
 
