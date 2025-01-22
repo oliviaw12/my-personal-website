@@ -14,16 +14,6 @@
   width: 100%;
 }
 
-.container.light {
-  background: linear-gradient(135deg, #f9f6f1 0%, #ffffff 100%);
-  color: #1d242e;
-}
-
-.container.synthwave {
-  background: linear-gradient(135deg, #1d242e 0%, #2d3748 100%);
-  color: #e0e7ff;
-}
-
 /* Home Section */
 .homeSection {
   min-height: 100vh;
@@ -336,23 +326,6 @@
 .timelineItem .description {
   color: var(--text-color);
   line-height: 1.6;
-}
-
-/* Theme Styles */
-.light {
-  --primary-color: #4f46e5;
-  --primary-hover: #4338ca;
-  --text-color: #1f2937;
-  --background: #ffffff;
-  --shadow-color: rgba(79, 70, 229, 0.2);
-}
-
-.synthwave {
-  --primary-color: #ff61d8;
-  --primary-hover: #e455bf;
-  --text-color: #e0e7ff;
-  --background: #1d242e;
-  --shadow-color: rgba(255, 97, 216, 0.2);
 }
 
 /* Responsive Design */

@@ -110,7 +110,7 @@ export default function Home() {
         "A game recommending app that suggests Steam games based on community reviews and user preferences.",
       tags: ["Python", "Tkinter"],
       image: "/images/SteamGames.jpeg",
-      github: "https://github.com/oliviaw12/Steam-Games",
+      github: "https://github.com/oliviaw12/Steam-Games-Recommender",
     },
   ];
 
