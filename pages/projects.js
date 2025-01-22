@@ -2,7 +2,7 @@ import React from "react";
 import styles from '../css/projects.module.css';
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer"
-import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
 
 const projects = [
     {
@@ -55,47 +55,47 @@ const projects = [
    
 ];
 
-function Projects() {
-    const { theme } = useTheme();
-
+export default function Projects() {
     return (
         <>
             <Navbar />
-             <div className={`${styles.projectsSection} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
+            <section className={styles.projectsSection}>
                 <h1 className="text-4xl font-bold mt-16 mb-8 text-center">Projects </h1>
                 <div className={styles.projectsGrid}>
                     {projects.map((project, index) => (
-                        <a
+                        <motion.div
                             key={index}
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.projectCardLink}
+                            className={styles.projectCard}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <div className={styles.projectCard}>
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className={styles.projectImage}
-                                />
-                                <h3 className={styles.projectTitle}>{project.title}</h3>
-                                <p className={styles.projectDescription}>{project.description}</p>
-                                <div className={styles.projectTags}>
-                                    {project.tags.map((tag, tagIndex) => (
-                                        <span key={tagIndex} className={styles.tag}>
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className={styles.projectImage}
+                            />
+                            <h3 className={styles.projectTitle}>{project.title}</h3>
+                            <p className={styles.projectDescription}>{project.description}</p>
+                            <div className={styles.projectTags}>
+                                {project.tags.map((tag, i) => (
+                                    <span key={i} className={styles.tag}>
+                                        {tag}
+                                    </span>
+                                ))}
                             </div>
-                        </a>
+                            <div className={styles.projectLinks}>
+                                {project.github && (
+                                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                        <i className="fab fa-github"></i> Code
+                                    </a>
+                                )}
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
-
-            </div>
+            </section>
             <Footer />
         </>
     );
 }
-
-export default Projects;

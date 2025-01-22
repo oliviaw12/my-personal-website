@@ -1,131 +1,146 @@
-.contactContainer {
+.contactSection {
   min-height: 100vh;
-  padding: 60px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  font-family: 'IBM Plex Mono', monospace;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(79, 70, 229, 0.05));
 }
 
-.contactContainer.light {
-  background-color: #f9f6f1;
-  color: #333333;
-}
-
-.contactContainer.synthwave {
-  background-color: #1d242e;
-  color: #e0e7ff;
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .contactForm {
-  max-width: 40rem;
-  margin: 2rem auto;
-  padding: 3rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2.5rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background-color: #f8f7f4;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contactContainer.synthwave .contactSubTitle {
-  color: #dedff2; /* Softer color for subtitles */
+.formGroup {
+  margin-bottom: 1.5rem;
 }
 
-.contactContainer.synthwave .inputField,
-.contactContainer.synthwave .textareaField {
-  background-color: #212a38; /* Darker input background */
-  border-color: #6b7280; /* Subtle border */
-  color: #e5e7eb; /* Light text for input */
-}
-
-.contactContainer.synthwave .submitButton {
-  background-color: #4d688a;
-  color: #fff;
-}
-
-.contactContainer.synthwave .contactForm {
-  background-color: #2b3242; 
-}
-
-.contactForm:hover {
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
-}
-
-.contactTitle {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.contactSubTitle {
-  font-size: 1.25rem;
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
   font-weight: 500;
-  margin-bottom: 3rem;
-  text-align: center;
-  color:#111f44;
+  color: inherit;
 }
 
-/* Form Elements */
-.inputField, .textareaField {
+.formInput,
+.formTextarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 2px solid rgba(99, 102, 241, 0.2);
   border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
   outline: none;
-  background-color: #f9fafb;
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.inputField:focus, .textareaField:focus {
-  border-color: #3b82f6;
-  background-color: white;
+.formTextarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
-.textareaField {
-  height: 150px;
-}
-
-/* Button */
 .submitButton {
   width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: #111f44;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
   color: white;
+  border: none;
+  border-radius: 0.5rem;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 0.5rem;
-  border: none;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .submitButton:hover {
-  background-color: #2563eb;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .submitButton:disabled {
-  background-color: #93c5fd;
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Status Message */
-.statusMessage {
+.formStatus {
   margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
   text-align: center;
-}
-
-.statusSuccess {
-  color: #10b981;
   font-weight: 500;
 }
 
-.statusError {
+.success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
-  font-weight: 500;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
+/* Theme Styles */
+:global(.light) .contactForm {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
+:global(.light) .formInput,
+:global(.light) .formTextarea {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
+}
 
+:global(.synthwave) .contactForm {
+  background: rgba(35, 35, 61, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:global(.synthwave) .formInput,
+:global(.synthwave) .formTextarea {
+  background: rgba(35, 35, 61, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 3rem 1rem;
+  }
+
+  .contactForm {
+    padding: 1.5rem;
+  }
+}

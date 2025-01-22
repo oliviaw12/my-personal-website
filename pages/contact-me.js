@@ -1,143 +1,95 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
 import styles from "@/css/contact.module.css";
-import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
 import emailjs from 'emailjs-com';
 
 export default function ContactMe() {
-  const { theme } = useTheme();
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formStatus, setFormStatus] = useState("");
   const form = useRef();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const sendEmail = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setFormStatus("Sending...");
 
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus("Please fill out all fields.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!validateEmail(formData.email)) {
-      setFormStatus("Please enter a valid email address.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      await emailjs.sendForm(
-        "service_wae1871",
-        "template_chs5677",
-        form.current,
-        "HMbBJHhU_3dLNOVyX"
-      );
-      setFormStatus("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setFormStatus("An error occurred. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID',
+      'YOUR_TEMPLATE_ID',
+      form.current,
+      'YOUR_USER_ID'
+    )
+    .then((result) => {
+      console.log('Email sent successfully:', result.text);
+      form.current.reset();
+    }, (error) => {
+      console.log('Failed to send email:', error.text);
+    });
   };
 
   return (
     <>
       <Navbar />
-      <div className={`${styles.contactContainer} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mt-16 mb-8 text-center">Contact Me</h1>
+      <section className={styles.contactContainer}>
+        <motion.div
+          className={styles.contactContent}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className={styles.contactTitle}>Get in Touch</h2>
+          <p className={styles.contactDescription}>
+            Have a question or want to work together? Feel free to reach out!
+          </p>
 
-          <div className={styles.contactForm}>
-            <h2 className={styles.contactSubTitle}>Hello! Please leave me a message here.</h2>
+          <form ref={form} onSubmit={sendEmail} className={styles.contactForm}>
+            <div className={styles.formGroup}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+                className={styles.formInput}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+                className={styles.formInput}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                required
+                className={styles.formTextarea}
+              ></textarea>
+            </div>
+            <motion.button
+              type="submit"
+              className={styles.submitButton}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Send Message
+            </motion.button>
+          </form>
 
-            <form onSubmit={sendEmail} ref={form}>
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-lg font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className={`${styles.inputField}`}
-                  required
-                />
-              </div>
-
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-lg font-medium mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={`${styles.inputField}`}
-                  required
-                />
-              </div>
-
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-lg font-medium mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className={`${styles.textareaField}`}
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={styles.submitButton}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
-            </form>
-
-            {formStatus && (
-              <p className={`${styles.statusMessage} ${formStatus.includes("success") ? styles.statusSuccess : styles.statusError}`}>
-                {formStatus}
-              </p>
-            )}
+          <div className={styles.contactLinks}>
+            <a href="https://github.com/oliviaw12" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/olivia-wongg" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:o.wong@mail.utoronto.ca">
+              <i className="fas fa-envelope"></i>
+            </a>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </section>
       <Footer />
     </>
   );
