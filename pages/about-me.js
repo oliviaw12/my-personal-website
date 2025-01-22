@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
-import Image from "next/image";
 import styles from "@/css/about.module.css"; // Import the module CSS
-import { useTheme } from "../context/ThemeContext";
 
 export default function AboutMe() {
-  const { theme } = useTheme();
 
   const skills = [
     "Python", "Java", "C", "JavaScript", "React",
@@ -24,7 +21,7 @@ export default function AboutMe() {
   return (
     <>
       <Navbar />
-      <div className={`${styles.container} ${theme === "synthwave" ? styles.synthwave : styles.light}`}>
+      <div className={`${styles.container}`}>
 
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold mt-16 mb-8 text-center">About Me</h1>
