@@ -8,20 +8,36 @@ import projectStyles from "@/css/projects.module.css";
 import contactStyles from "@/css/contact.module.css";
 import { Element } from "react-scroll";
 import { Link as ScrollLink } from "react-scroll";
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import ExperienceCard from '@/components/ExperienceCard';
+import ProjectCard from '@/components/ProjectCard';
+import ProfileImage from '@/components/ProfileImage';
 
 export default function Home() {
   const router = useRouter();
   const form = useRef();
-  
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Track mouse movement
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      setMousePosition({ x: clientX, y: clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   // Scroll animations for sections
   const [homeRef, homeInView] = useInView({ threshold: 0.3, triggerOnce: true });
   const [aboutRef, aboutInView] = useInView({ threshold: 0.3, triggerOnce: true });
   const [projectsRef, projectsInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [contactRef, contactInView] = useInView({ threshold: 0.3, triggerOnce: true });
-  
+  const [skillsRef, skillsInView] = useInView({ threshold: 0.3, triggerOnce: true });
+
   // Contact form state
   const [formData, setFormData] = useState({
     name: "",
@@ -29,7 +45,8 @@ export default function Home() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formStatus, setFormStatus] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -123,47 +140,202 @@ export default function Home() {
     });
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const sendEmail = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setFormStatus("Sending...");
-
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus("Please fill out all fields.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!validateEmail(formData.email)) {
-      setFormStatus("Please enter a valid email address.");
-      setIsSubmitting(false);
-      return;
-    }
 
     try {
-      const result = await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      await emailjs.sendForm(
+        "service_wae1871",
+        "template_chs5677",
         form.current,
-        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+        "HMbBJHhU_3dLNOVyX"
       );
 
-      if (result.text === 'OK') {
-        setFormStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setFormStatus("Failed to send message. Please try again.");
-      }
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      setIsSubmitting(false);
+      setShowSuccess(true);
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+
     } catch (error) {
-      setFormStatus("An error occurred. Please try again later.");
+      console.error('Failed to send email:', error);
+      setIsSubmitting(false);
+      setShowError(true);
+
+      // Hide error message after 5 seconds
+      setTimeout(() => {
+        setShowError(false);
+      }, 5000);
     }
-    setIsSubmitting(false);
   };
+
+  // Generate orbiting dots
+  const generateDots = (count) => {
+    const dots = [];
+    for (let i = 0; i < count; i++) {
+      const angle = (i * 360) / count;
+      const radius = Math.random() * 20 + 140; // Random radius between 140-160
+      const delay = Math.random() * 5; // Random delay for animation
+      const x = Math.cos((angle * Math.PI) / 180) * radius;
+      const y = Math.sin((angle * Math.PI) / 180) * radius;
+      dots.push({ x, y, delay });
+    }
+    return dots;
+  };
+
+  const dots = generateDots(12);
+
+  const renderHomeSection = () => (
+    <Element name="home" className={styles.homeSection}>
+      <div className={styles.backgroundPattern} />
+      <motion.div
+        ref={homeRef}
+        className={styles.heroContent}
+        initial={{ opacity: 0, y: 30 }}
+        animate={homeInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.div
+          className={styles.profileSection}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={homeInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <ProfileImage
+            src="/images/profile.jpg"
+            alt="Olivia Wong"
+          />
+        </motion.div>
+
+        <motion.div
+          className={styles.textSection}
+          initial={{ opacity: 0, x: 30 }}
+          animate={homeInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <motion.span
+            className={styles.greeting}
+            initial={{ opacity: 0, y: 20 }}
+            animate={homeInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            Hello, I'm
+          </motion.span>
+
+          <motion.h1
+            className={styles.name}
+            initial={{ opacity: 0, y: 20 }}
+            animate={homeInView ? {
+              opacity: 1,
+              y: 0,
+              visibility: 'visible',
+              transition: {
+                duration: 0.5,
+                delay: 0.7
+              }
+            } : { visibility: 'hidden' }}
+          >
+            Olivia Wong
+          </motion.h1>
+
+          <motion.h2
+            className={styles.title}
+            initial={{ opacity: 0, x: -20 }}
+            animate={homeInView ? {
+              opacity: 1,
+              x: 0,
+              transition: {
+                duration: 0.5,
+                delay: 0.8
+              }
+            } : {}}
+          >
+            UX Designer & Full Stack Developer
+          </motion.h2>
+
+          <motion.p
+            className={styles.description}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={homeInView ? {
+              opacity: 1,
+              scale: 1,
+              transition: {
+                duration: 0.5,
+                delay: 0.9
+              }
+            } : {}}
+          >
+            I design and develop beautiful, responsive, and user-friendly web experiences. Combining my passion for design and development, I seamlessly blend aesthetics with functionality.
+          </motion.p>
+
+          <motion.div
+            className={styles.cta}
+            initial={{ opacity: 0, y: 20 }}
+            animate={homeInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 1 }}
+          >
+            <ScrollLink to="projects" smooth={true} duration={500}>
+              <motion.button
+                className={styles.primaryButton}
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View My Work
+                <motion.svg
+                  className={styles.icon}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ x: 0, rotate: 0 }}
+                  whileHover={{ x: 5, rotate: 45 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </motion.svg>
+              </motion.button>
+            </ScrollLink>
+
+            <ScrollLink to="contact" smooth={true} duration={500}>
+              <motion.button
+                className={styles.secondaryButton}
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Contact Me
+                <motion.svg
+                  className={styles.icon}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ x: 0, rotate: 0 }}
+                  whileHover={{ x: 5, rotate: 45 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </motion.svg>
+              </motion.button>
+            </ScrollLink>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </Element>
+  );
 
   return (
     <>
@@ -175,149 +347,29 @@ export default function Home() {
 
       <Navbar />
       {/* Scroll Progress Indicator */}
-      <motion.div
+      {/* <motion.div
         style={{
           ...progressBar,
         }}
-      />
+      /> */}
       <motion.main
         initial="initial"
         animate="animate"
         className={styles.container}
       >
         {/* Home Section */}
-        <Element name="home">
-          <motion.section 
-            ref={homeRef}
-            className={styles.homeSection}
-            initial={{ opacity: 0 }}
-            animate={homeInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div 
-              className={styles.heroContent}
-              variants={staggerChildren}
-            >
-              {/* Left Side - Profile Image */}
-              <motion.div 
-                className={styles.profileSection}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <motion.div 
-                  className={styles.profileImageWrapper}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.div 
-                    className={styles.borderCircle}
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  ></motion.div>
-                  <img
-                    src="/images/profile.jpg"
-                    alt="Olivia Wong"
-                    className={styles.profileImage}
-                  />
-                </motion.div>
-              </motion.div>
-
-              {/* Right Side - Text Content */}
-              <motion.div 
-                className={styles.textSection}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <motion.div className={styles.titleContainer}>
-                  <motion.h2 
-                    className={styles.greeting}
-                    variants={{
-                      initial: { opacity: 0, y: -20 },
-                      animate: { opacity: 1, y: 0 }
-                    }}
-                    transition={{ duration: 0.8, type: "spring" }}
-                  >
-                    Hi, I'm
-                  </motion.h2>
-                  <motion.h1 
-                    className={styles.heroTitle}
-                    variants={{
-                      initial: { opacity: 0, y: -30 },
-                      animate: { opacity: 1, y: 0 }
-                    }}
-                    transition={{ duration: 0.8, type: "spring", delay: 0.1 }}
-                  >
-                    Olivia Wong
-                  </motion.h1>
-                </motion.div>
-
-                {/* Key Highlights */}
-                <motion.ul 
-                  className={styles.pointsList}
-                  variants={staggerChildren}
-                >
-                  {[' Computer Science Student at U of T',
-                    ' Former UI/UX Co-op at Clearco',
-                    ' Hackathon Winner'].map((point, index) => (
-                    <motion.li 
-                      key={index}
-                      className={styles.point}
-                      variants={{
-                        initial: { opacity: 0, x: -20 },
-                        animate: { opacity: 1, x: 0 }
-                      }}
-                      transition={{ delay: index * 0.2 }}
-                      whileHover={{ x: 10, color: 'var(--primary-color)' }}
-                    >
-                      {point}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-
-                <motion.div 
-                  className={styles.heroCTA}
-                  variants={{
-                    initial: { opacity: 0, y: 30 },
-                    animate: { opacity: 1, y: 0 }
-                  }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  <ScrollLink
-                    to="projects"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    className={styles.primaryButton}
-                  >
-                    View My Work
-                  </ScrollLink>
-                  <ScrollLink
-                    to="contact"
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    className={styles.secondaryButton}
-                  >
-                    Get in Touch
-                  </ScrollLink>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </motion.section>
-        </Element>
+        {renderHomeSection()}
 
         {/* About Section */}
         <Element name="about">
-          <motion.section 
+          <motion.section
             ref={aboutRef}
             className={styles.aboutSection}
             initial={{ opacity: 0, y: 50 }}
             animate={aboutInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h2 
+            <motion.h2
               className={styles.sectionTitle}
               variants={{
                 initial: { opacity: 0, x: -50 },
@@ -329,281 +381,342 @@ export default function Home() {
 
             <motion.div className={styles.aboutContent}>
               {/* Skills Section */}
-              <motion.div 
-                className={styles.skillsSection}
-                variants={staggerChildren}
-              >
-                <motion.h3 
-                  className={styles.subsectionTitle}
-                  variants={fadeInUp}
+              <Element name="skills">
+                <motion.section
+                  ref={skillsRef}
+                  className={`${styles.section} ${styles.skillsSection}`}
+                  initial={{ opacity: 0 }}
+                  animate={skillsInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.8 }}
                 >
-                  Technical Skills
-                </motion.h3>
-                <motion.div className={styles.skillsGrid}>
-                  {[
-                    { category: 'Languages', items: ['Python', 'JavaScript', 'Java', 'C', 'SQL', 'HTML/CSS'] },
-                    { category: 'Frameworks', items: ['React.js', 'Next.js', 'Node.js', 'Express.js', 'Django'] },
-                    { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'Figma', 'Postman'] },
-                  ].map((skillGroup, index) => (
-                    <motion.div 
-                      key={skillGroup.category}
-                      className={styles.skillGroup}
-                      variants={fadeInUp}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <h4>{skillGroup.category}</h4>
-                      <ul>
-                        {skillGroup.items.map((skill, skillIndex) => (
-                          <motion.li 
-                            key={skill}
-                            variants={{
-                              initial: { opacity: 0, x: -20 },
-                              animate: { opacity: 1, x: 0 }
-                            }}
-                            transition={{ delay: skillIndex * 0.1 }}
-                          >
-                            {skill}
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.div>
+        
+                  <motion.div
+                    className={styles.skillsContent}
+                    variants={staggerChildren}
+                  >
+                    <div className={styles.skillsWrapper}>
+                      {/* Technical Skills */}
+                      <motion.div className={styles.technicalSkills}>
+                        <motion.h3
+                          className={styles.subsectionTitle}
+                          variants={fadeInUp}
+                        >
+                          Technical Skills
+                        </motion.h3>
+                        <motion.div 
+                          className={styles.skillsGrid}
+                          variants={staggerChildren}
+                        >
+                          {[
+                            {
+                              category: "Frontend Development",
+                              items: ["React", "Next.js", "HTML5", "CSS3", "JavaScript"],
+                              icon: "🎨"
+                            },
+                            {
+                              category: "Backend Development",
+                              items: ["Node.js", "Python", "PostgreSQL", "Flask"],
+                              icon: "⚙️"
+                            },
+                            {
+                              category: "Machine Learning",
+                              items: ["PyTorch", "TensorFlow", "Scikit-learn", "Pandas"],
+                              icon: "🤖"
+                            },
+                            {
+                              category: "Tools & Others",
+                              items: ["Git", "Docker", "AWS","Linux", "Figma"],
+                              icon: "🛠️"
+                            }
+                          ].map((skillGroup, index) => (
+                            <motion.div
+                              key={skillGroup.category}
+                              className={styles.skillGroup}
+                              variants={fadeInUp}
+                              whileHover={{ scale: 1.02 }}
+                              transition={{ 
+                                type: "spring",
+                                stiffness: 300,
+                                delay: index * 0.1 
+                              }}
+                            >
+                              <div className={styles.skillGroupHeader}>
+                                <span className={styles.skillIcon}>{skillGroup.icon}</span>
+                                <h4>{skillGroup.category}</h4>
+                              </div>
+                              <ul>
+                                {skillGroup.items.map((skill, skillIndex) => (
+                                  <motion.li
+                                    key={skill}
+                                    variants={{
+                                      initial: { opacity: 0, x: -20 },
+                                      animate: { opacity: 1, x: 0 }
+                                    }}
+                                    whileHover={{ x: 5 }}
+                                    transition={{ delay: skillIndex * 0.1 }}
+                                  >
+                                    {skill}
+                                  </motion.li>
+                                ))}
+                              </ul>
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      </motion.div>
 
-              {/* Experience Section */}
-              <motion.div 
-                className={styles.experienceSection}
-                variants={staggerChildren}
-              >
-                <motion.h3 
-                  className={styles.subsectionTitle}
-                  variants={fadeInUp}
-                >
-                  Experience
-                </motion.h3>
-                <motion.div className={styles.timeline}>
-                  {[
-                    {
-                      role: 'UI/UX Co-op',
-                      company: 'Clearco',
-                      period: 'Sept 2020 - Dec 2020',
-                      description: 'Developed user interfaces using Figma. Collaborated with technical team to implement responsive and accessible web components.'
-                    },
-                    {
-                      role: 'Programming Instructor',
-                      company: 'Genius Camp',
-                      period: 'May 2024 - Aug 2024',
-                      description: 'Taught introductory programming courses, provided one-on-one support to students, and graded assignments.'
-                    },
-                    {
-                      role: 'Full Stack Developer',
-                      company: 'DMZ Basecamp',
-                      period: 'May 2024 - Aug 2024',
-                      description: 'Built full-stack application for app and integrated ML models..'
-                    }
-                  ].map((exp, index) => (
-                    <motion.div 
-                      key={exp.role}
-                      className={styles.timelineItem}
-                      variants={fadeInUp}
-                      transition={{ delay: index * 0.2 }}
-                    >
-                      <h4>{exp.role}</h4>
-                      <h5>{exp.company}</h5>
-                      <p className={styles.period}>{exp.period}</p>
-                      <p className={styles.description}>{exp.description}</p>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.div>
+                      {/* Experience */}
+                      <motion.div className={styles.experience}>
+                        <motion.h3
+                          className={styles.subsectionTitle}
+                          variants={fadeInUp}
+                        >
+                          Experience
+                        </motion.h3>
+                        <motion.div 
+                          className={styles.experienceGrid}
+                          variants={staggerChildren}
+                        >
+                          {[
+                            {
+                              role: 'Programming Instructor',
+                              company: 'Genius Camp',
+                              period: 'May 2024 - Aug 2024',
+                              description: 'Led introductory programming courses for 25+ students. Created interactive curriculum covering Python, web development, and algorithmic thinking.'
+                            },
+                            {
+                              role: 'Co-Founder / Full-Stack Developer',
+                              company: 'DMZ Incubation Program',
+                              period: 'May 2024 - Aug 2024',
+                              description: 'Developed a cross-platform mobile app (iOS/Android) using React Native to o↵er dining discounts to 100+ students. resented at the 2024 Collision Conference, refining features based on live user feedback.'
+                            },
+                          
+                            {
+                              role: 'UI/UX Co-op',
+                              company: 'Clearco',
+                              period: 'Sept 2020 - Dec 2020',
+                              description: 'Developed user interfaces using Figma. Collaborated with technical team to implement responsive and accessible web components.'
+                            }
+                          ].map((exp, index) => (
+                            <ExperienceCard
+                              key={exp.role}
+                              role={exp.role}
+                              company={exp.company}
+                              period={exp.period}
+                              description={exp.description}
+                              index={index}
+                            />
+                          ))}
+                        </motion.div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </motion.section>
+              </Element>
             </motion.div>
           </motion.section>
         </Element>
 
         {/* Projects Section */}
         <Element name="projects">
-          <motion.section 
+          <motion.section
             ref={projectsRef}
-            className={projectStyles.projectsSection}
+            className={`${styles.section} ${styles.projectsSection}`}
             initial={{ opacity: 0 }}
             animate={projectsInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h2 
-              className={projectStyles.sectionTitle}
-              variants={fadeInUp}
-            >
-              Projects
-            </motion.h2>
-            <motion.div 
-              className={projectStyles.projectsGrid}
+             <motion.h3
+                          className={styles.subsectionTitle}
+                          variants={fadeInUp}
+                        >
+                          Projects
+                        </motion.h3>
+            <motion.div
+              className={styles.projectsGrid}
               variants={staggerChildren}
             >
               {projects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  className={projectStyles.projectCard}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  whileHover={{ 
-                    y: -10,
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <motion.div 
-                    className={projectStyles.projectImageContainer}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className={projectStyles.projectImage}
-                    />
-                  </motion.div>
-                  <motion.div 
-                    className={projectStyles.projectContent}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                  >
-                    <h3 className={projectStyles.projectTitle}>{project.title}</h3>
-                    <p className={projectStyles.projectDescription}>
-                      {project.description}
-                    </p>
-                    <motion.div 
-                      className={projectStyles.projectTags}
-                      variants={staggerChildren}
-                    >
-                      {project.tags.map((tag, tagIndex) => (
-                        <motion.span 
-                          key={tag} 
-                          className={projectStyles.tag}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: tagIndex * 0.1 }}
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          {tag}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                    {project.github && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={projectStyles.githubLink}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        View on GitHub
-                      </motion.a>
-                    )}
-                  </motion.div>
-                </motion.div>
+                <ProjectCard
+                  key={index}
+                  title={project.title}
+                  description={project.description}
+                  technologies={project.tags}
+                  imageUrl={project.image}
+                  projectUrl={project.github || undefined}
+                />
               ))}
             </motion.div>
           </motion.section>
         </Element>
 
-        {/* Contact Section */}
+        {/* Contact Section
         <Element name="contact">
-          <motion.section 
+          <motion.section
             ref={contactRef}
-            className={contactStyles.contactSection}
-            initial={{ opacity: 0, y: 50 }}
-            animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            className={`${styles.section} ${styles.contactSection}`}
+            initial={{ opacity: 0 }}
+            animate={contactInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h2 
-              className={contactStyles.sectionTitle}
-              variants={fadeInUp}
-            >
-              Contact Me
-            </motion.h2>
-            <motion.form
-              ref={form}
-              onSubmit={sendEmail}
-              className={contactStyles.contactForm}
-              variants={fadeInUp}
-              initial={{ opacity: 0, y: 30 }}
-              animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ delay: 0.2 }}
-            >
-              <motion.div 
-                className={contactStyles.formGroup}
-                variants={fadeIn}
-              >
-                <label htmlFor="name">Name</label>
-                <motion.input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className={contactStyles.formInput}
-                  required
-                  whileFocus={{ scale: 1.01 }}
-                />
-              </motion.div>
-              <motion.div 
-                className={contactStyles.formGroup}
-                variants={fadeIn}
-              >
-                <label htmlFor="email">Email</label>
-                <motion.input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={contactStyles.formInput}
-                  required
-                  whileFocus={{ scale: 1.01 }}
-                />
-              </motion.div>
-              <motion.div 
-                className={contactStyles.formGroup}
-                variants={fadeIn}
-              >
-                <label htmlFor="message">Message</label>
-                <motion.textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className={contactStyles.formTextarea}
-                  required
-                  whileFocus={{ scale: 1.01 }}
-                />
-              </motion.div>
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                className={contactStyles.submitButton}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </motion.button>
-              {formStatus && (
-                <motion.p 
-                  className={`${contactStyles.formStatus} ${
-                    formStatus.includes("success") ? contactStyles.success : contactStyles.error
-                  }`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
+            <motion.div className={styles.contactWrapper}>
+              <motion.div className={styles.contactContent}>
+                <motion.h2
+                  className={styles.sectionTitle}
+                  variants={fadeInUp}
                 >
-                  {formStatus}
+                  Contact Me
+                </motion.h2>
+                <motion.p 
+                  className={styles.contactDescription}
+                  variants={fadeInUp}
+                  transition={{ delay: 0.2 }}
+                >
+                  Have a question or want to work together? Feel free to reach out!
                 </motion.p>
-              )}
-            </motion.form>
+              </motion.div>
+
+              <motion.form
+                ref={form}
+                onSubmit={handleSubmit}
+                className={styles.contactForm}
+                variants={fadeInUp}
+              >
+                <motion.div
+                  className={styles.formGroup}
+                  variants={fadeIn}
+                >
+                  <label htmlFor="name">
+                    <motion.span 
+                      className={styles.labelText}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      Name
+                    </motion.span>
+                  </label>
+                  <motion.input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className={styles.formInput}
+                    required
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  />
+                </motion.div>
+
+                <motion.div
+                  className={styles.formGroup}
+                  variants={fadeIn}
+                >
+                  <label htmlFor="email">
+                    <motion.span 
+                      className={styles.labelText}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      Email
+                    </motion.span>
+                  </label>
+                  <motion.input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className={styles.formInput}
+                    required
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  />
+                </motion.div>
+
+                <motion.div
+                  className={styles.formGroup}
+                  variants={fadeIn}
+                >
+                  <label htmlFor="message">
+                    <motion.span 
+                      className={styles.labelText}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      Message
+                    </motion.span>
+                  </label>
+                  <motion.textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className={styles.formTextarea}
+                    required
+                    whileFocus={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  />
+                </motion.div>
+
+                <motion.div className={styles.formActions}>
+                  <motion.button
+                    type="submit"
+                    className={styles.submitButton}
+                    disabled={isSubmitting}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    {isSubmitting ? (
+                      <span className={styles.spinner}>Sending...</span>
+                    ) : (
+                      <>
+                        Send Message
+                        <motion.svg
+                          className={styles.icon}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </motion.svg>
+                      </>
+                    )}
+                  </motion.button>
+                </motion.div>
+
+                {showSuccess && (
+                  <motion.div 
+                    className={styles.successMessage}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                  >
+                    Message sent successfully! I'll get back to you soon.
+                  </motion.div>
+                )}
+
+                {showError && (
+                  <motion.div 
+                    className={styles.errorMessage}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                  >
+                    Oops! Something went wrong. Please try again.
+                  </motion.div>
+                )}
+              </motion.form>
+            </motion.div>
           </motion.section>
-        </Element>
+        </Element> */}
       </motion.main>
       <Footer />
     </>

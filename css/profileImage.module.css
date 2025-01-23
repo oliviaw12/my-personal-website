@@ -1,0 +1,149 @@
+.wrapper {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: visible;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 85%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 4;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.auraOuter,
+.auraMid,
+.auraInner {
+  position: absolute;
+  border-radius: 50%;
+  inset: -20px;
+  z-index: 1;
+  filter: blur(10px);
+  background: rgba(var(--primary-rgb), 0.15);
+  animation: pulseAura 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.auraOuter {
+  animation-delay: 0s;
+  opacity: 0.3;
+}
+
+.auraMid {
+  animation-delay: -1s;
+  opacity: 0.2;
+}
+
+.auraInner {
+  animation-delay: -2s;
+  opacity: 0.1;
+}
+
+@keyframes pulseAura {
+  0% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+}
+
+.orbitContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orbitingAura {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: orbit linear infinite;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg) translateX(var(--orbit-radius)) rotate(-180deg);
+    opacity: 0.8;
+  }
+}
+
+.orbitingAura:nth-child(1) {
+  --orbit-radius: 140px;
+  animation: orbit 8s linear infinite, pulse 4s ease-in-out infinite;
+}
+
+.orbitingAura:nth-child(2) {
+  --orbit-radius: 170px;
+  animation: orbit 10s linear infinite reverse, pulse 4s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.orbitingAura:nth-child(3) {
+  --orbit-radius: 200px;
+  animation: orbit 12s linear infinite, pulse 4s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* Add a hover effect to make the aura more dynamic */
+.imageContainer:hover .auraOuter,
+.imageContainer:hover .auraMid,
+.imageContainer:hover .auraInner {
+  animation-duration: 2s;
+  filter: blur(15px);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .orbitingAura:nth-child(1) { --orbit-radius: 110px; }
+  .orbitingAura:nth-child(2) { --orbit-radius: 130px; }
+  .orbitingAura:nth-child(3) { --orbit-radius: 150px; }
+}

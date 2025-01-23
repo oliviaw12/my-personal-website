@@ -225,12 +225,16 @@
 
 .nav-item:hover p {
   font-size: 12pt;
-  opacity: 50%;
+  color: var(--primary-color);
+  transform: translateY(-2px);
+
 }
 
 .nav-item:hover:active p {
   font-size: 12pt;
   opacity: 100% !important;
+  color: var(--primary-color);
+  transform: translateY(-2px);
 }
 
 .nav-icons-div {
@@ -284,6 +288,31 @@
   color: white;
   font-size: 24pt;
   margin: 10px 0;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.socialIcon:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.socialIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 480px) {
