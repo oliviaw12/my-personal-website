@@ -42,7 +42,7 @@ function Footer() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <motion.a
+          {/* <motion.a
             href="mailto:o.wong@mail.utoronto.ca"
             className={styles.email}
             whileHover={{ scale: 1.05 }}
@@ -53,7 +53,7 @@ function Footer() {
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
             o.wong@mail.utoronto.ca
-          </motion.a>
+          </motion.a> */}
         </motion.div>
 
         <motion.div 
@@ -87,7 +87,7 @@ function Footer() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <p> {currentYear} Olivia Wong. All rights reserved.</p>
+          <p>© {currentYear} Olivia Wong.</p>
         </motion.div>
       </div>
     </motion.footer>

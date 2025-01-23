@@ -4,8 +4,6 @@ import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
 import { useRouter } from "next/router";
 import styles from "@/css/index.module.css";
-import projectStyles from "@/css/projects.module.css";
-import contactStyles from "@/css/contact.module.css";
 import { Element } from "react-scroll";
 import { Link as ScrollLink } from "react-scroll";
 import emailjs from '@emailjs/browser';
@@ -68,18 +66,6 @@ export default function Home() {
     transition: { duration: 0.8 }
   };
 
-  // Scroll progress indicator
-  const progressBar = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: "3px",
-    background: "var(--primary-color)",
-    transformOrigin: "0%",
-    zIndex: 1001
-  };
-
   // Projects data
   const projects = [
     {
@@ -131,14 +117,14 @@ export default function Home() {
     },
   ];
 
-  // Contact form functions
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  // // Contact form functions
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -346,12 +332,6 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      {/* Scroll Progress Indicator */}
-      {/* <motion.div
-        style={{
-          ...progressBar,
-        }}
-      /> */}
       <motion.main
         initial="initial"
         animate="animate"
@@ -487,7 +467,7 @@ export default function Home() {
                               role: 'Co-Founder / Full-Stack Developer',
                               company: 'DMZ Incubation Program',
                               period: 'May 2024 - Aug 2024',
-                              description: 'Developed a cross-platform mobile app (iOS/Android) using React Native to o↵er dining discounts to 100+ students. resented at the 2024 Collision Conference, refining features based on live user feedback.'
+                              description: 'Developed a cross-platform mobile app (iOS/Android) using React Native. Had product presented at the 2024 Collision Conference, refining features based on live user feedback.'
                             },
                           
                             {
