@@ -15,10 +15,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* To handle responsiveness */
+  flex-wrap: wrap; 
 }
 
-.footerLeft, .socialLinks {
+.socialLinks {
   display: flex;
   align-items: center;
 }

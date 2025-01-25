@@ -37,26 +37,6 @@ function Footer() {
     >
       <div className={styles.footerContent}>
         <motion.div 
-          className={styles.footerLeft}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          {/* <motion.a
-            href="mailto:o.wong@mail.utoronto.ca"
-            className={styles.email}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg className={styles.emailIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            o.wong@mail.utoronto.ca
-          </motion.a> */}
-        </motion.div>
-
-        <motion.div 
           className={styles.socialLinks}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
